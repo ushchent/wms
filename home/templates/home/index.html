@@ -1,0 +1,22 @@
+{% extends 'home/base.html' %}
+{% block content %}
+<section class="produkty">
+{% for produkt in produkty %}
+{% if not user.is_authenticated %}
+<a href="{% url 'homepage:produkt' produkt.id %}">
+		<div class="produkt">
+			<h2>{{ produkt.title }}</h2>
+			<p>{{ produkt.lead }}</p>
+		</div>
+	</a>
+{% else %}
+	<a href="{% url produkt.app_name %}">
+		<div class="produkt">
+			<h2>{{ produkt.title }}</h2>
+			<p>Начать работу</p>
+		</div>
+	</a>
+	{% endif %}
+{% endfor %}
+</section>
+{% endblock content %}

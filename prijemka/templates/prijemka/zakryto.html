@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="description" content="">
+	<link href="#" rel="stylesheet" type="text/css">
+	<style>
+		tbody tr:nth-child(even) {
+			  background-color: #e3e4e6;
+
+		}
+		td, th {
+			  text-align: center;
+			    padding: .5em;
+		}
+		th:nth-child(1), td:nth-child(1) {
+			  text-align: left;
+		}
+				th:nth-child(2), td:nth-child(2) {
+								  text-align: left;
+								  		}
+
+	</style>
+	<title></title>
+</head>
+<body>
+	<header></header>
+	<main id="main"><h1>Закрытые товары</h1></main>
+	<footer></footer>
+	<script>
+		const parse_data = data => {
+					console.log(data);
+					const table_handle = document.getElementById("main");
+					const table = document.createElement("table");
+					const table_header = document.createElement("thead");
+					const table_header_content = "<tr><th>Артикул</th>\
+													<th>Название</th>\
+													<th>Количество</th>\
+													<th>Упаковано по</th>\
+													<th>Грузовых мест</th>\
+													<th>Сектор</th>";
+					table_header.innerHTML = table_header_content;
+					table.appendChild(table_header);
+
+					const table_body = document.createElement("tbody");
+
+					data.forEach(d => {
+								const { code, title, amount, packaging, boxes,
+										sector} = d;	
+								const tr = document.createElement("tr");
+								const cells = `<td>${code}</td>
+	   											<td>${title}</td>
+	   											<td>${amount}</td>
+	   											<td>${packaging}</td>
+												<td>${boxes}</td>
+												<td>${sector}</td>`;
+								tr.innerHTML = cells;
+								table_body.appendChild(tr);
+							})
+					table.appendChild(table_body);
+					table_handle.appendChild(table);
+				}
+
+		fetch("/api/zakryto/")
+			.then(response => response.json())
+			.then(data => parse_data(data))
+	</script>
+</body>
+</html>
+

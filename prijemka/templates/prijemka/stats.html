@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="shortcut icon" href="/favicon.ico" />
+	<meta name="description" content="">
+	<style>
+		#stats_by_sector, #artikul_by_sector {
+			list-style: none;
+		}
+	</style>
+	<title></title>
+</head>
+<body>
+	<header></header>
+	<main>
+		<h1>Статистика машины</h1>
+		<p>Всего артикулов: <span id="total_artikul"></span></p>
+		<p>Всего грузовых мест: <span id="total_boxes"></span></p>
+		<p>Распределение грузовых мест по секторам:</p>
+		<ul id="stats_by_sector">
+		</ul>
+		<p>Распределение артикулов по секторам:</p>
+		<ul id="artikul_by_sector">
+		</ul>
+		<p>Готовность машины: <span id="gotovo"></span></p>
+	</main>
+	<footer></footer>
+	<script>
+		const parse_data = data => {
+					boxes_handle = document.getElementById("stats_by_sector");
+					artikul_handle = document.getElementById("artikul_by_sector");
+					data["by_sector"].forEach(datum => {
+								li = document.createElement("li");
+								text = document.createTextNode(
+											`Сектор ${datum["sector"]}:
+	   ${datum["boxes"]} (${Math.round(datum["boxes"] / data["total_boxes"] *
+				   100)}%)`
+										);
+								li.appendChild(text);
+								boxes_handle.appendChild(li);
+							});
+					data["by_artikul"].forEach(datum => {
+								li = document.createElement("li");
+								text = document.createTextNode(
+											`Сектор ${datum["sector"]}:
+	   ${datum["count"]} (${Math.round(datum["count"] / data["total_artikul"] *
+				   100)}%)`
+										);
+								li.appendChild(text);
+								artikul_handle.appendChild(li);
+							});
+					document.getElementById("total_artikul").textContent
+					= data["total_artikul"];
+					document.getElementById("total_boxes").textContent =
+						data["total_boxes"];
+					document.getElementById("gotovo").textContent =
+						`${data["gotovo"]}%`;
+				}
+		fetch("/api/stats")
+				.then(response => response.json())
+				.then(data => parse_data(data))
+
+	</script>
+
+</body>
+</html>
+

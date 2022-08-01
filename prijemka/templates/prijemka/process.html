@@ -1,0 +1,72 @@
+{% extends "home/base.html" %}
+{% load custom_group_tags %}
+{% load static %}
+	{% block stylesheets %}
+		<link rel="stylesheet" href="{% static 'home/styles.css' %}"  type="text/css">
+		<link rel="stylesheet" type="text/css" href="{% static "prijemka/css/styles.css" %}" />
+	{% endblock stylesheets %}
+			{% block menu %}
+			{% if not user.is_authenticated %}
+			<li>
+				<a href="{% url "homepage:login" %}">Войти</a>
+			</li>
+			{% else %}
+			<li>
+				<a href="{% url "prijemka:stats" %}">Статистика</a>
+			</li>
+			<li>
+				<a href="{% url "prijemka:field" %}">Поле</a>
+			</li>
+			<li>
+				<a href="{% url "prijemka:zakryto" %}">Закрыто</a>
+			</li>
+			<li>
+				<a href="{% url "homepage:logout" %}">Выход</a>
+			</li>
+			{% endif %}
+			{% endblock menu %}
+	</nav>
+    </header>
+	{% block content %} 
+		<h2>Приёмка ТМЦ</h2>
+		{% csrf_token %}
+        <div class="search_type_selector">
+            <div class="search_type">
+            <label for="code_search">Поиск по артикулу</label>
+            <input name="search_type" type="radio" id="code_search" value="code" checked></p>
+            </div>
+            <div class="search_type">
+            <label for="title_search">по названию</label>
+            <input name="search_type" type="radio" id="title_search" value="title">
+            </div>
+        </div>
+            <p class="artikul_selector">
+                <input id="artikul_selector" onkeyup="handle_input(this.value)"
+                placeholder="Артикул или название" /></p>
+            <div id="search_results" class="hidden"></div>
+            <p id="message"></p>
+			<h2>Артикул <span id="artikul_id"></span></h2>
+            <p id="title_id"></p>
+            <p>Сектор: <span id="sector_id"></span></p>
+            <p>Метка: <span id="tag_id"></span></p>
+            <p>Количество: <span id="amount_id"></span></p>
+            <p>Упаковано по: <span id="packaging_id"></span></p>
+            <p>Количество грузовых мест: <span id="boxes_id"></span></p>
+            <p>Статус: <span id="status_id"></span></p>
+            <p>В поле: <span id="in_field_id">0</span></p>
+			<div id="field_area">
+            <label for="number_id">Всего найдено коробок:</label>
+            <input id="number_id" type="number" name="boxes_found"/>
+            <button id="v_pole" onclick="update_field()">Отправить в поле</button>
+			</div>
+            {% if request.user|has_group:"Zvenjevoi" %}
+            <button id="zakryt"
+				onclick="close_artikul(document.getElementById('artikul_id').textContent)">Закрыть</button>
+            {% endif %}
+
+	
+	{% endblock content %} 
+	{% block scripts %}
+		<script src="{% static 'home/menu_manager.js' %}"></script>
+		<script src="{% static 'prijemka/js/process.js' %}"></script>
+	{% endblock scripts %} 

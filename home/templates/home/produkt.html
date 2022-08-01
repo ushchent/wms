@@ -1,0 +1,7 @@
+{% extends "home/base.html" %}
+{% block content %}
+	<h2>{{ produkt.title }}</h2>
+	{% autoescape off %}
+		<p>{{ produkt.description }}</p>
+	{% endautoescape %}
+{% endblock content %}

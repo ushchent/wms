@@ -1,0 +1,45 @@
+{% extends "home/base.html" %}
+{% load custom_group_tags %}
+{% load static %}
+	{% block stylesheets %}
+		<link rel="stylesheet" href="{% static 'home/styles.css' %}"  type="text/css">
+		<link rel="stylesheet" type="text/css" href="{% static "prijemka/css/styles.css" %}" />
+	{% endblock stylesheets %}
+			{% block menu %}
+			{% if not user.is_authenticated %}
+			<li>
+				<a href="{% url "homepage:login" %}">Войти</a>
+			</li>
+			{% else %}
+			<li>
+				<a href="{% url "prijemka:stats" %}">Статистика</a>
+			</li>
+			<li>
+				<a href="{% url "prijemka:field" %}">Поле</a>
+			</li>
+			<li>
+				<a href="{% url "prijemka:zakryto" %}">Закрыто</a>
+			</li>
+			<li>
+				<a href="{% url "homepage:logout" %}">Выход</a>
+			</li>
+			{% endif %}
+			{% endblock menu %}
+	</nav>
+    </header>
+	{% block content %} 
+		<h2>Приёмка ТМЦ</h2>
+		{% for truck in trucks %}
+		<a href="{% url 'prijemka:process' truck.truck_info %}">
+			<div class="truck">
+			<h3>Машина № {{ truck.truck_info }}</h3>
+			<p>Приход: {{ truck.date|date:"Y-m-d" }}</p>
+			<p>Готовность: {{ meta_data|dict_key:truck.id }} %</p>
+		</div>
+		</a>
+		{% endfor %}
+		{% endblock content %} 
+	{% block scripts %}
+		<script src="{% static 'home/menu_manager.js' %}"></script>
+		<script src="{% static 'prijemka/js/script.js' %}"></script>
+	{% endblock scripts %}

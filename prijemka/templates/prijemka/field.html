@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="description" content="">
+	<link href="#" rel="stylesheet" type="text/css">
+<style>
+main div {
+	  display: inline;
+	  float: left;
+	  margin: .5em;
+	  text-align: center;
+	  border: 1px dashed black;
+	  padding: 0 .5em;
+}
+</style>
+	<title></title>
+</head>
+<body>
+	<header>
+		<h1>Поле</h1>
+	</header>
+	<main id="field"></main>
+	<footer></footer>
+	<script>
+		const update_page = () => {
+				fetch("/api/field_data/")
+					.then(response => response.json())
+					.then(data => {
+				target = document.getElementById("field");
+				target.innerHTML = "";
+				data.forEach(d => {
+					const artikul_placeholder = document.createElement("div");
+					artikul_placeholder.className = "field_item"
+					const code_formatted =	String(d["code"]).replace(/(.)(?=(\d{3})+$)/g,'$1 ')
+					artikul_placeholder.innerHTML =
+								`<h2>${code_formatted}</h2><p>${d["in_field"]}</p>`;
+					target.appendChild(artikul_placeholder);
+					})
+							})
+				}
+	setInterval(update_page, 3000);
+	</script>
+</body>
+</html>
+

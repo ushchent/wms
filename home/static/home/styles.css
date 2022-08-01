@@ -1,0 +1,104 @@
+.mobile_nav_button span {
+border: 1px solid black;
+width: 1.5em;
+display: block;
+margin-top: .6em;
+text-align: right;
+}
+
+
+#logo, .mobile_nav_button {
+display: inline-block;
+}
+
+nav {
+display: none;
+}
+
+.mobile_nav_button {
+float: right;
+margin-right: .6em;
+}
+.zanaves {
+    display: none;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+}
+
+.mobile_nav {
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1002;
+    width: 70vw;
+    height: 100vh;
+    display: none;
+    background-color: white;
+}
+.mobile_nav ul li {
+    display: block;
+    margin-top: 2em;
+    text-align: center;
+}
+
+.mobile_nav ul {
+    margin: 0 auto;
+}
+.open {
+    display: block !important;
+}
+
+
+
+input {
+  padding: .5em;
+}
+
+button {
+  padding: .5em 1em;
+  border-radius: 0;
+  border-width: 0;
+  background-color: black;
+  color: white;
+}
+
+
+
+
+header a {
+text-decoration: none;
+color: black;
+}
+
+header h1 {
+margin-bottom: 0.1em;
+margin-top: 0;
+}
+
+header .caption {
+margin-top: 0;
+  font-size: .8em;
+}
+
+.produkty a {
+text-decoration: none;
+color: black;
+}
+
+.produkt {
+border: 1px dashed black;
+margin-bottom: .8em;
+padding: .5em 1em;
+}
+
+footer a {
+text-decoration: none;
+color: brown;
+}
+
+footer {
+font-size: .8em;
+}

@@ -1,0 +1,143 @@
+.truck {
+    border: 1px dashed;
+    margin-bottom: 1em;
+    padding: 0 1em;
+}
+#number_id::-webkit-outer-spin-button,
+
+#number_id::-webkit-inner-spin-button {
+	  -webkit-appearance: none;
+	    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+	  -moz-appearance: textfield;
+}
+     
+#field_area input, #field_area button {
+		    display: inline;
+}
+#field_area button {
+		  width: 12em;
+		  	    height: 3em;
+						  border-radius: 0px;
+						  		    border: none;
+												  background-color: orange;
+}
+
+#number_id {
+		    max-width: 4em;
+					    height: 2.5em;
+}
+
+header h1, header nav {
+	    display: inline;
+}
+nav {
+	    float: right;
+		    margin-top: 1em;
+			    margin-right: 2em;
+
+}
+header {
+	    margin-bottom: 2em;
+}  
+nav a:last-child {
+	    margin-left: 5em;
+}
+.open {
+	color: green;
+}
+.closed {
+	color: red;
+}
+
+button {
+	display: inline;
+	margin: 1em 1em 0 0;
+} 
+
+input[type=radio] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid green;
+  position: relative;
+  top: 4px;
+}
+
+input:checked {
+  border: 6px solid green;
+  background-color: white;
+}
+
+.search_type {
+        display: inline;
+            float: left;
+}
+.artikul_selector {
+        clear: both;
+}
+.search_type:nth-last-child(1) {
+        margin-left: .5em;
+}
+.hidden {
+        display: none;
+    }
+
+#artikul_selector {
+    position: realtive;
+    font-size: 20px;
+    padding: 5px;
+    width: 90%;
+    margin-bottom: 0;
+    background-color: white;
+    border: 1px solid black;
+}
+
+button {
+    display: block;
+  width: 12em;
+  height: 4em;
+  border-radius: 0px;
+  border: none;
+  background-color: orange;
+}
+
+#search_results {
+    position: absolute;
+    background-color: white;
+	width: 89%;
+    border: 1px solid black;
+    padding: 0 10px 0 0;
+    overflow: scroll;
+    max-height: 150px;
+    margin-top: 0;
+}
+#search_results li {
+    list-style: none;
+    margin-left: 0;
+    cursor: pointer;
+    padding: 2px;
+    font-size: 16px;
+}
+
+#search_results li:hover {
+	background-color: #CECECE;
+}
+#search_results ul {
+    margin: 0.2em auto 0.2em 0;
+    padding-left: .3em;
+
+}
+
+.address {
+    font-weight: bold;
+    }
+
+
